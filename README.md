@@ -52,7 +52,7 @@
 ### 📊 My Stats:
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Nabula&show_icons=true&locale=en&theme=tokyonight" alt="Nabula Stats" height="180"/>
+  <img src="https://github-readme-stats.vercel.app/apiPeqperrr=Nabula&show_icons=true&locale=en&theme=tokyonight" alt="Nabula Stats" height="180"/>
   </a>
   <img src="https://github-readme-streak-stats.herokuapp.com/?user=Peqperrr&theme=tokyonight" alt="Peqperrr Streak" height="180"/>
 </p>

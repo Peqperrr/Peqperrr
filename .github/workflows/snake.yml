@@ -1,18 +1,18 @@
-name: Generate Snake
+name: Generate Snake Animation
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Täglich Mitternacht
+    - cron: "0 0 * * *" # Läuft täglich um Mitternacht
   workflow_dispatch:
 
 jobs:
-  generate:
+  generate-snake:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Generate GitHub Snake
+      - name: Generate Snake SVG
         uses: Platane/snk@v3
         with:
           github_user_name: Peqperrr
@@ -25,5 +25,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
           publish_branch: output
-
-          
+          force_orphan: true

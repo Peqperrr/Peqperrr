@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming + Entwicklung Station Infografik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Inter:wght@400;600;700&family=Fira+Code&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #111827;
+            color: #F3F4F6;
+            font-family: 'Inter', sans-serif;
+        }
+        .roman-title {
+            font-family: 'Cinzel', serif;
+        }
+        .code-font {
+            font-family: 'Fira Code', monospace;
+        }
+        .card {
+            background-color: rgba(31, 41, 55, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(75, 85, 99, 0.5);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 8px #00F0FF, 0 0 10px #00F0FF;
+        }
+        .text-glow-magenta {
+            text-shadow: 0 0 8px #FF00E5, 0 0 10px #FF00E5;
+        }
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #00F0FF;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center my-8 md:my-12">
+            <h1 class="roman-title text-4xl md:text-6xl font-bold text-glow-cyan">Gaming + Entwicklung Station</h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-300">Eine visuelle Aufschlüsselung der ultimativen Leistungs-Hardware</p>
+        </header>
+
+        <main class="space-y-12">
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="card rounded-lg p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-glow-magenta">Das Herzstück des Systems</h2>
+                    <p class="text-gray-300">
+                        Das Fundament dieser Maschine wird durch eine CPU mit extremer Kernanzahl und blitzschnellem DDR5-RAM gebildet. Diese Kombination ist entscheidend für die Bewältigung komplexer Entwicklungsaufgaben und die Bereitstellung flüssiger Frameraten in den neuesten Spielen.
+                    </p>
+                    <div class="mt-6">
+                        <h3 class="text-xl font-semibold">AMD Ryzen 9 9950X3D</h3>
+                        <p class="text-cyan-400">16 Kerne / 32 Threads</p>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-xl font-semibold">Corsair Dominator Titanium</h3>
+                        <p class="text-cyan-400">64 GB DDR5-6600 RAM</p>
+                    </div>
+                    <button class="mt-6 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="generateAnalysis('CPU', 'AMD Ryzen 9 9950X3D - 16 Kerne / 32 Threads, 4.3 GHz, mit 3D V-Cache Technologie. Ideal für Gaming und anspruchsvolle Entwicklungsaufgaben.', 'cpuAnalysis', 'cpuLoading')">
+                        ✨ KI-Analyse
+                    </button>
+                    <div id="cpuLoading" class="hidden mt-4 flex justify-center items-center">
+                        <div class="spinner"></div>
+                    </div>
+                    <div id="cpuAnalysis" class="mt-4 text-gray-200 text-sm italic"></div>
+                </div>
+                <div class="card rounded-lg p-6 md:p-8">
+                    <div class="chart-container">
+                        <canvas id="cpuCoresChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-gray-400">Vergleich der CPU-Kernanzahl</p>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="card rounded-lg p-6 md:p-8 order-2 md:order-1">
+                    <div class="chart-container">
+                        <canvas id="gpuVramChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-gray-400">VRAM-Kapazität für anspruchsvolle Aufgaben</p>
+                </div>
+                <div class="card rounded-lg p-6 md:p-8 order-1 md:order-2">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-glow-magenta">Visuelle & Speicher-Suprematie</h2>
+                    <p class="text-gray-300">
+                        Mit einer Grafikkarte der nächsten Generation und zwei NVMe-SSDs ist das System für 4K-Gaming mit Raytracing und sofortige Ladezeiten gerüstet. Der massive VRAM-Pool bewältigt die größten Texturen und Modelle, während der 8-TB-Speicherplatz eine riesige Spiele- und Projektbibliothek beherbergt.
+                    </p>
+                    <div class="mt-6 text-center">
+                        <h3 class="text-5xl font-bold text-cyan-400">32 GB</h3>
+                        <p class="text-xl font-semibold">RTX 5090 VRAM</p>
+                    </div>
+                     <div class="mt-4 text-center">
+                        <h3 class="text-5xl font-bold text-cyan-400">8 TB</h3>
+                        <p class="text-xl font-semibold">PCIe 4.0 NVMe Speicher</p>
+                    </div>
+                    <button class="mt-6 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="generateAnalysis('Grafikkarte', 'Asus ROG Astral OC GeForce RTX 5090 - 32 GB VRAM. Ultimativ für 4K Gaming, Raytracing, 3D Rendering und KI-Entwicklung.', 'gpuAnalysis', 'gpuLoading')">
+                        ✨ KI-Analyse
+                    </button>
+                    <div id="gpuLoading" class="hidden mt-4 flex justify-center items-center">
+                        <div class="spinner"></div>
+                    </div>
+                    <div id="gpuAnalysis" class="mt-4 text-gray-200 text-sm italic"></div>
+                </div>
+            </section>
+
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="card rounded-lg p-6 md:p-8">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-glow-magenta">Thermische & Energie-Exzellenz</h2>
+                    <p class="text-gray-300">
+                        Um Spitzenleistung aufrechtzuerhalten, sind eine robuste Kühlung und eine stabile Stromversorgung unerlässlich. Eine 360-mm-AIO-Wasserkühlung und ein 1200-W-Platin-Netzteil stellen sicher, dass das System auch unter extremster Last kühl, leise und effizient bleibt.
+                    </p>
+                     <div class="mt-6">
+                        <h3 class="text-xl font-semibold">ASUS ROG STRIX LC 360</h3>
+                        <p class="text-cyan-400">Flüssigkeitskühlung</p>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-xl font-semibold">ASUS ROG STRIX 1200P</h3>
+                        <p class="text-cyan-400">1200W 80+ Platinum Netzteil</p>
+                    </div>
+                    <button class="mt-6 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="generateAnalysis('Kühlung & Netzteil', 'ASUS ROG STRIX LC 360 RGB GUNDAM AIO-Wasserkühlung und ASUS ROG STRIX 1200P Gaming 1200W 80+ Platinum Netzteil. Gewährleisten optimale Temperaturen und stabile Stromversorgung.', 'coolingPowerAnalysis', 'coolingPowerLoading')">
+                        ✨ KI-Analyse
+                    </button>
+                    <div id="coolingPowerLoading" class="hidden mt-4 flex justify-center items-center">
+                        <div class="spinner"></div>
+                    </div>
+                    <div id="coolingPowerAnalysis" class="mt-4 text-gray-200 text-sm italic"></div>
+                </div>
+                <div class="card rounded-lg p-6 md:p-8">
+                    <div class="chart-container">
+                        <canvas id="powerDistributionChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-gray-400">Konzeptionelle Leistungsverteilung</p>
+                </div>
+            </section>
+            
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                 <div class="card rounded-lg p-6 md:p-8 order-2 md:order-1">
+                    <div class="chart-container">
+                        <canvas id="monitorRefreshRateChart"></canvas>
+                    </div>
+                    <p class="text-center mt-4 text-gray-400">Vergleich der Monitor-Bildwiederholraten</p>
+                </div>
+                <div class="card rounded-lg p-6 md:p-8 order-1 md:order-2">
+                    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-glow-magenta">Das immersive Interface</h2>
+                    <p class="text-gray-300">
+                        Die Leistung des PCs wird durch zwei hochmoderne OLED-Monitore zum Leben erweckt. Ein 4K-240Hz-Display für atemberaubende visuelle Erlebnisse und ein QHD-480Hz-Display für unübertroffene Wettbewerbsvorteile.
+                    </p>
+                     <div class="mt-6">
+                        <h3 class="text-xl font-semibold">ASUS ROG Swift PG32UCDM</h3>
+                        <p class="text-cyan-400">3840x2160 @ 240Hz</p>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="text-xl font-semibold">ASUS ROG Swift PG27AQDP</h3>
+                        <p class="text-cyan-400">2560x1440 @ 480Hz</p>
+                    </div>
+                    <button class="mt-6 bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105" onclick="generateAnalysis('Monitore', 'ASUS ROG Swift OLED PG32UCDM (4K 240Hz) und ASUS ROG Swift OLED PG27AQDP (QHD 480Hz). OLED-Technologie für perfekte Schwarzwerte.', 'monitorAnalysis', 'monitorLoading')">
+                        ✨ KI-Analyse
+                    </button>
+                    <div id="monitorLoading" class="hidden mt-4 flex justify-center items-center">
+                        <div class="spinner"></div>
+                    </div>
+                    <div id="monitorAnalysis" class="mt-4 text-gray-200 text-sm italic"></div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center my-12">
+            <p class="code-font text-lg text-cyan-400 text-glow-cyan">// Erstellt von Maik & Toby //</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const chartColors = {
+            cyan: 'rgba(0, 240, 255, 0.8)',
+            magenta: 'rgba(255, 0, 229, 0.8)',
+            purple: 'rgba(143, 0, 255, 0.8)',
+            cyanBorder: 'rgba(0, 240, 255, 1)',
+            magentaBorder: 'rgba(255, 0, 229, 1)',
+            purpleBorder: 'rgba(143, 0, 255, 1)',
+            gridColor: 'rgba(75, 85, 99, 0.3)',
+            textColor: '#F3F4F6'
+        };
+
+        const defaultChartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: chartColors.textColor,
+                        font: {
+                            size: 14
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: { color: chartColors.textColor },
+                    grid: { color: chartColors.gridColor }
+                },
+                y: {
+                    ticks: { color: chartColors.textColor },
+                    grid: { color: chartColors.gridColor }
+                }
+            }
+        };
+        
+        const wrapLabel = (label, maxLength = 16) => {
+            if (label.length <= maxLength) return label;
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines.filter(line => line.length > 0);
+        };
+
+        new Chart(document.getElementById('cpuCoresChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Standard Quad-Core', 'High-End Gaming (8-Core)', 'Ryzen 9 9950X3D (Dieses Build)'],
+                datasets: [{
+                    label: 'Anzahl der CPU-Kerne',
+                    data: [4, 8, 16],
+                    backgroundColor: [chartColors.purple, chartColors.magenta, chartColors.cyan],
+                    borderColor: [chartColors.purpleBorder, chartColors.magentaBorder, chartColors.cyanBorder],
+                    borderWidth: 2
+                }]
+            },
+            options: { ...defaultChartOptions, indexAxis: 'y' }
+        });
+
+        new Chart(document.getElementById('gpuVramChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Gaming (High/Ultra)', '4K Texturen & Assets', 'Entwicklung & Rendering', 'Freier Puffer'],
+                datasets: [{
+                    label: 'VRAM-Nutzung (32 GB)',
+                    data: [12, 8, 8, 4],
+                    backgroundColor: [chartColors.cyan, chartColors.magenta, chartColors.purple, 'rgba(55, 65, 81, 0.5)'],
+                    borderColor: '#111827',
+                    borderWidth: 4,
+                }]
+            },
+            options: { ...defaultChartOptions, scales: {} }
+        });
+
+        new Chart(document.getElementById('powerDistributionChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Grafikkarte (GPU)', 'Prozessor (CPU)', 'Mainboard & RAM', 'Andere Komponenten', 'Reserve'],
+                datasets: [{
+                    label: 'Konzeptionelle Leistungsverteilung (1200W)',
+                    data: [450, 200, 100, 100, 350],
+                    backgroundColor: [chartColors.cyan, chartColors.magenta, chartColors.purple, 'rgba(107, 114, 128, 0.8)', 'rgba(55, 65, 81, 0.5)'],
+                    borderColor: '#111827',
+                    borderWidth: 4,
+                }]
+            },
+            options: { ...defaultChartOptions, scales: {} }
+        });
+
+        new Chart(document.getElementById('monitorRefreshRateChart'), {
+            type: 'bar',
+            data: {
+                labels: [wrapLabel('Primär: 4K Gaming & Kreativität'), wrapLabel('Sekundär: Kompetitives Gaming')],
+                datasets: [{
+                    label: 'Bildwiederholrate (Hz)',
+                    data: [240, 480],
+                    backgroundColor: [chartColors.cyan, chartColors.magenta],
+                    borderColor: [chartColors.cyanBorder, chartColors.magentaBorder],
+                    borderWidth: 2
+                }]
+            },
+            options: { ...defaultChartOptions }
+        });
+
+        async function generateAnalysis(componentName, currentDescription, targetElementId, loadingElementId) {
+            const targetElement = document.getElementById(targetElementId);
+            const loadingElement = document.getElementById(loadingElementId);
+
+            targetElement.innerHTML = '';
+            loadingElement.classList.remove('hidden');
+
+            const prompt = `Analysiere die folgende ${componentName} Komponente für ein High-End-Gaming- und Entwicklungs-PC-Setup. Gib eine prägnante, einprägsame Zusammenfassung ihrer Stärken und eine Empfehlung für ihren idealen Einsatzbereich in diesem Kontext. Die Komponente ist: "${componentName}: ${currentDescription}".`;
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+            const payload = { contents: chatHistory };
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    targetElement.innerHTML = `<p class="mt-2 p-3 bg-gray-700 rounded-md border border-gray-600">${text}</p>`;
+                } else {
+                    targetElement.innerHTML = '<p class="mt-2 text-red-400">Fehler: KI-Analyse konnte nicht generiert werden.</p>';
+                }
+            } catch (error) {
+                console.error('Fehler beim Aufruf der Gemini API:', error);
+                targetElement.innerHTML = '<p class="mt-2 text-red-400">Fehler: Verbindung zur KI fehlgeschlagen.</p>';
+            } finally {
+                loadingElement.classList.add('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

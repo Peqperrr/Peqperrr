@@ -3,7 +3,7 @@
   <img src="https://github.com/Peqperrr/Peqperrr/blob/main/IMG_6696.gif?raw=true" alt="Banner" width="80%" />
 </p>
 
-<h1 align="center">Hi there, I'm Peqperrr 👋</h1>
+<h1 align="center">Hi there, I'm Peqperrr / Maik 👋</h1>
 
 <p align="center"> 
   <a href="https://discord.com/users/592823845673631936">
